@@ -3,117 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رواد الذكاء الاصطناعي | إعداد سلطان العتيبي</title>
+    <title>موسوعة الذكاء الاصطناعي | سلطان العتيبي</title>
     <style>
+        /* تعريف الخط */
         @font-face {
             font-family: 'GE_SS_Two_Medium';
             src: url('GE_SS_Two_Medium 5.otf');
         }
 
         :root {
-            --accent: #00f2ff;
-            --bg: #050a15;
-            --card-bg: rgba(255, 255, 255, 0.03);
+            --main-cyan: #00f2ff;
+            --main-purple: #7000ff;
+            --bg-deep: #030712;
+            --glass: rgba(255, 255, 255, 0.05);
         }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
             margin: 0;
-            background-color: var(--bg);
-            color: #e0e0e0;
+            padding: 0;
+            background-color: var(--bg-deep);
+            color: #ffffff;
             font-family: 'GE_SS_Two_Medium', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* خلفية ضوئية متحركة */
+        .glow-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #101827 0%, #030712 100%);
+            z-index: -1;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            background: linear-gradient(to bottom, rgba(0,242,255,0.05), transparent);
         }
 
-        .hero {
-            padding: 80px 20px;
-            background: linear-gradient(to bottom, #0a192f, var(--bg));
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to left, var(--main-cyan), var(--main-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(0,242,255,0.3));
         }
 
-        h1 { font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; }
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(3, 7, 18, 0.9);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            border-bottom: 1px solid var(--glass);
+            z-index: 100;
+        }
 
-        .btn {
-            display: inline-block;
-            padding: 12px 35px;
-            margin: 20px 10px;
-            border: 2px solid var(--accent);
-            border-radius: 50px;
-            color: var(--accent);
+        nav a {
+            color: white;
             text-decoration: none;
+            font-size: 0.9rem;
             transition: 0.3s;
+            padding: 5px 15px;
+            border-radius: 20px;
         }
 
-        .btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 20px var(--accent); }
+        nav a:hover { background: var(--main-cyan); color: black; }
 
-        .team-grid {
+        .section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
+
+        .grid-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
-            max-width: 1100px;
-            margin: 50px auto;
-            padding: 0 20px;
+            margin-top: 40px;
         }
 
         .card {
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 242, 255, 0.1);
-            border-radius: 20px;
-            padding: 25px;
+            background: var(--glass);
+            padding: 30px;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
             transition: 0.4s;
+            position: relative;
+            overflow: hidden;
         }
 
         .card:hover {
+            border-color: var(--main-cyan);
             transform: translateY(-10px);
-            border-color: var(--accent);
-            background: rgba(0, 242, 255, 0.05);
+            background: rgba(0,242,255,0.03);
         }
 
         .card img {
-            width: 140px;
-            height: 140px;
+            width: 100px; height: 100px;
             border-radius: 50%;
-            border: 3px solid var(--accent);
-            object-fit: cover;
-            margin-bottom: 20px;
+            border: 2px solid var(--main-cyan);
+            margin-bottom: 15px;
         }
 
-        .card h3 { color: var(--accent); margin-bottom: 5px; }
-        .card p { font-size: 0.9rem; opacity: 0.8; }
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
 
-        footer { padding: 40px; opacity: 0.5; font-size: 0.8rem; }
+        .box { padding: 20px; border-radius: 15px; height: 100%; }
+        .pros { background: rgba(0, 255, 128, 0.05); border-right: 4px solid #00ff80; }
+        .cons { background: rgba(255, 48, 48, 0.05); border-right: 4px solid #ff3030; }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            background: #000;
+            border-top: 1px solid var(--glass);
+        }
+
+        .badge {
+            background: var(--main-cyan);
+            color: black;
+            padding: 2px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
 
-    <div class="hero">
-        <h1>رواد غيّروا مجرى التاريخ</h1>
-        <p>تعرف على العقول التي وضعت حجر الأساس للذكاء الاصطناعي</p>
-        <a href="#founders" class="btn">ابدأ الاستكشاف</a>
+    <div class="glow-bg"></div>
+
+    <header>
+        <div class="badge">المشروع التقني الختامي</div>
+        <h1 class="hero-title">عالم الذكاء الاصطناعي</h1>
+        <p style="font-size: 1.5rem; opacity: 0.8;">رحلة من الخيال العلمي إلى الواقع الرقمي</p>
+        <p>بإشراف الطالب: <b>سلطان عادل العتيبي</b></p>
+        <a href="#about" class="btn" style="color: var(--main-cyan); margin-top: 20px;">انزل لاستكشاف الموسوعة ↓</a>
+    </header>
+
+    <nav>
+        <a href="#about">ما هو؟</a>
+        <a href="#history">التاريخ</a>
+        <a href="#pioneers">الرواد</a>
+        <a href="#pros">الإيجابيات والسلبيات</a>
+    </nav>
+
+    <div class="section" id="about">
+        <h2>ماهية الذكاء الاصطناعي</h2>
+        <div class="card">
+            <p>الذكاء الاصطناعي (AI) ليس مجرد برنامج، بل هو قدرة الآلات على محاكاة العمليات الذهنية البشرية مثل التعلم، الاستنتاج، والتصحيح الذاتي. هو الثورة الصناعية الرابعة التي تعيد تشكيل وجه البشرية.</p>
+        </div>
     </div>
 
-    <div class="team-grid" id="founders">
-        
-        <div class="card">
-            <img src="[attachment_2](attachment)" alt="Alan Turing">
-            <h3>آلان تورينج</h3>
-            <p>الأب الروحي لعلوم الحاسوب، صاحب "اختبار تورينج" الشهير لقياس ذكاء الآلة.</p>
+    <div class="section" id="history">
+        <h2>محطات تاريخية</h2>
+        <div class="grid-cards">
+            <div class="card">
+                <span class="badge">1950</span>
+                <h3>اختبار تورينج</h3>
+                <p>آلان تورينج يطرح سؤاله الشهير: "هل تستطيع الآلات التفكير؟" ووضع أسس تقييم ذكاء الآلة.</p>
+            </div>
+            <div class="card">
+                <span class="badge">1956</span>
+                <h3>مؤتمر دارتموث</h3>
+                <p>هنا ولد المصطلح رسمياً على يد جون مكارثي، واعتبر الانطلاقة الرسمية لهذا العلم.</p>
+            </div>
+            <div class="card">
+                <span class="badge">1997</span>
+                <h3>Deep Blue</h3>
+                <p>تغلب كمبيوتر آي بي إم على بطل العالم في الشطرنج غاري كاسباروف، صدمة للعالم!</p>
+            </div>
         </div>
+    </div>
 
-        <div class="card">
-            <img src="[attachment_1](attachment)" alt="John McCarthy">
-            <h3>جون مكارثي</h3>
-            <p>هو من صاغ مصطلح "الذكاء الاصطناعي" عام 1956 ومخترع لغة Lisp.</p>
+    <div class="section" id="pioneers">
+        <h2>الرواد والمؤسسون</h2>
+        <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div class="card" style="text-align: center;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg" alt="">
+                <h3>آلان تورينج</h3>
+                <p>عبقري الرياضيات الذي فك شفرات الحرب ووضع فلسفة الذكاء.</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/John_McCarthy_Stanford.jpg" alt="">
+                <h3>جون مكارثي</h3>
+                <p>مخترع لغة LISP وصاحب تسمية "الذكاء الاصطناعي".</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Marvin_Minsky_%28cropped%29.jpg" alt="">
+                <h3>مارفن مينسكي</h3>
+                <p>رائد الشبكات العصبية الاصطناعية ومؤسس معمل AI في MIT.</p>
+            </div>
         </div>
+    </div>
 
-        <div class="card">
-            <img src="[attachment_0](attachment)" alt="Marvin Minsky">
-            <h3>مارفن مينسكي</h3>
-            <p>مؤسس مختبر الذكاء الاصطناعي في MIT ومطور الشبكات العصبية الأولى.</p>
+    <div class="section" id="pros">
+        <h2>الوجهان للتقنية</h2>
+        <div class="pros-cons">
+            <div class="box pros">
+                <h3 style="color: #00ff80;">الإيجابيات ✅</h3>
+                <ul>
+                    <li>زيادة الكفاءة والسرعة في العمليات.</li>
+                    <li>تقليل الأخطاء البشرية في الطب والجراحة.</li>
+                    <li>تحليل البيانات الضخمة التي يعجز عنها البشر.</li>
+                    <li>العمل في البيئات الخطرة (الفضاء، المناجم).</li>
+                </ul>
+            </div>
+            <div class="box cons">
+                <h3 style="color: #ff3030;">السلبيات ❌</h3>
+                <ul>
+                    <li>مخاوف من فقدان الوظائف التقليدية.</li>
+                    <li>قضايا الخصوصية والأمن السيبراني.</li>
+                    <li>الانحياز الخوارزمي في اتخاذ القرارات.</li>
+                    <li>الاعتماد المفرط على الآلة وضعف مهارات البشر.</li>
+                </ul>
+            </div>
         </div>
-
     </div>
 
     <footer>
-        تم التصميم والتطوير بواسطة المبدع: سلطان عادل العتيبي
+        <p>صُمم بكل فخر بواسطة <b>سلطان عادل العتيبي</b></p>
+        <p style="font-size: 0.7rem; color: #666;">مشروع تقني تعليمي - 2024</p>
     </footer>
 
 </body>
