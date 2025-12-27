@@ -5,235 +5,223 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>موسوعة الذكاء الاصطناعي | سلطان العتيبي</title>
     <style>
-        /* تعريف الخط */
         @font-face {
             font-family: 'GE_SS_Two_Medium';
             src: url('GE_SS_Two_Medium 5.otf');
         }
 
-        :root {
-            --main-cyan: #00f2ff;
-            --main-purple: #7000ff;
-            --bg-deep: #030712;
-            --glass: rgba(255, 255, 255, 0.05);
-        }
-
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-
-        body {
+        * {
             margin: 0;
             padding: 0;
-            background-color: var(--bg-deep);
-            color: #ffffff;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
             font-family: 'GE_SS_Two_Medium', sans-serif;
-            overflow-x: hidden;
+            line-height: 1.8;
         }
 
-        /* خلفية ضوئية متحركة */
-        .glow-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, #101827 0%, #030712 100%);
-            z-index: -1;
-        }
-
-        header {
+        /* واجهة الدخول - سينمائية */
+        .hero {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
             text-align: center;
-            background: linear-gradient(to bottom, rgba(0,242,255,0.05), transparent);
+            padding: 20px;
         }
 
-        .hero-title {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            background: linear-gradient(to left, var(--main-cyan), var(--main-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(0,242,255,0.3));
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            color: #00d4ff;
         }
 
-        nav {
-            position: sticky;
-            top: 0;
-            background: rgba(3, 7, 18, 0.9);
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            border-bottom: 1px solid var(--glass);
-            z-index: 100;
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: 0.3s;
-            padding: 5px 15px;
-            border-radius: 20px;
+        /* الأقسام */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
         }
 
-        nav a:hover { background: var(--main-cyan); color: black; }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #00d4ff;
+            position: relative;
+        }
 
-        .section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #00d4ff;
+            margin: 15px auto;
+        }
 
-        .grid-cards {
+        /* شبكة المحتوى */
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
+            gap: 30px;
         }
 
         .card {
-            background: var(--glass);
+            background: #111;
             padding: 30px;
-            border-radius: 25px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid #222;
+            transition: 0.3s;
         }
 
         .card:hover {
-            border-color: var(--main-cyan);
-            transform: translateY(-10px);
-            background: rgba(0,242,255,0.03);
+            border-color: #00d4ff;
+            transform: translateY(-5px);
         }
 
-        .card img {
-            width: 100px; height: 100px;
-            border-radius: 50%;
-            border: 2px solid var(--main-cyan);
+        .card h3 {
+            color: #00d4ff;
             margin-bottom: 15px;
         }
 
-        .pros-cons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        /* الرواد */
+        .pioneer-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 2px solid #00d4ff;
+            object-fit: cover;
         }
 
-        .box { padding: 20px; border-radius: 15px; height: 100%; }
-        .pros { background: rgba(0, 255, 128, 0.05); border-right: 4px solid #00ff80; }
-        .cons { background: rgba(255, 48, 48, 0.05); border-right: 4px solid #ff3030; }
+        /* الإيجابيات والسلبيات */
+        .split-section {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .split-box {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .pros { background: rgba(0, 212, 255, 0.05); border: 1px solid #00d4ff; }
+        .cons { background: rgba(255, 69, 58, 0.05); border: 1px solid #ff453a; }
+
+        ul { list-style: none; }
+        ul li { margin-bottom: 15px; display: flex; align-items: center; }
+        ul li::before { content: '•'; color: #00d4ff; margin-left: 10px; font-weight: bold; }
 
         footer {
-            text-align: center;
-            padding: 50px;
             background: #000;
-            border-top: 1px solid var(--glass);
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
         }
 
-        .badge {
-            background: var(--main-cyan);
-            color: black;
-            padding: 2px 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
+        .designer-info {
+            font-size: 1.2rem;
+            color: #fff;
             margin-bottom: 10px;
-            display: inline-block;
+        }
+
+        .year {
+            color: #00d4ff;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <div class="glow-bg"></div>
+    <section class="hero">
+        <h1>مستقبل الذكاء الاصطناعي</h1>
+        <p>رحلة معرفية شاملة في تاريخ وعلم الآلات الذكية</p>
+        <p>إعداد وتصميم الطالب: <strong>سلطان عادل العتيبي</strong></p>
+    </section>
 
-    <header>
-        <div class="badge">المشروع التقني الختامي</div>
-        <h1 class="hero-title">عالم الذكاء الاصطناعي</h1>
-        <p style="font-size: 1.5rem; opacity: 0.8;">رحلة من الخيال العلمي إلى الواقع الرقمي</p>
-        <p>بإشراف الطالب: <b>سلطان عادل العتيبي</b></p>
-        <a href="#about" class="btn" style="color: var(--main-cyan); margin-top: 20px;">انزل لاستكشاف الموسوعة ↓</a>
-    </header>
-
-    <nav>
-        <a href="#about">ما هو؟</a>
-        <a href="#history">التاريخ</a>
-        <a href="#pioneers">الرواد</a>
-        <a href="#pros">الإيجابيات والسلبيات</a>
-    </nav>
-
-    <div class="section" id="about">
-        <h2>ماهية الذكاء الاصطناعي</h2>
-        <div class="card">
-            <p>الذكاء الاصطناعي (AI) ليس مجرد برنامج، بل هو قدرة الآلات على محاكاة العمليات الذهنية البشرية مثل التعلم، الاستنتاج، والتصحيح الذاتي. هو الثورة الصناعية الرابعة التي تعيد تشكيل وجه البشرية.</p>
-        </div>
-    </div>
-
-    <div class="section" id="history">
-        <h2>محطات تاريخية</h2>
-        <div class="grid-cards">
+    <div class="container">
+        <h2 class="section-title">نشأة الذكاء الاصطناعي</h2>
+        <div class="grid">
             <div class="card">
-                <span class="badge">1950</span>
-                <h3>اختبار تورينج</h3>
-                <p>آلان تورينج يطرح سؤاله الشهير: "هل تستطيع الآلات التفكير؟" ووضع أسس تقييم ذكاء الآلة.</p>
+                <h3>البداية (1950)</h3>
+                <p>وضع آلان تورينج حجر الأساس ببحثه "الآلات الحوسبية والذكاء"، مقترحاً اختباراً لتحديد ما إذا كانت الآلة تفكر حقاً.</p>
             </div>
             <div class="card">
-                <span class="badge">1956</span>
-                <h3>مؤتمر دارتموث</h3>
-                <p>هنا ولد المصطلح رسمياً على يد جون مكارثي، واعتبر الانطلاقة الرسمية لهذا العلم.</p>
+                <h3>التسمية (1956)</h3>
+                <p>في مؤتمر دارتموث، اقترح جون مكارثي مصطلح "الذكاء الاصطناعي" ليكون علماً مستقلاً بذاته.</p>
             </div>
             <div class="card">
-                <span class="badge">1997</span>
-                <h3>Deep Blue</h3>
-                <p>تغلب كمبيوتر آي بي إم على بطل العالم في الشطرنج غاري كاسباروف، صدمة للعالم!</p>
+                <h3>التطور الحديث</h3>
+                <p>انتقلنا من الخوارزميات البسيطة إلى "التعلم العميق" و"الذكاء الاصطناعي التوليدي" الذي نعيشه اليوم.</p>
             </div>
         </div>
-    </div>
 
-    <div class="section" id="pioneers">
-        <h2>الرواد والمؤسسون</h2>
-        <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-            <div class="card" style="text-align: center;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg" alt="">
+        <h2 class="section-title" style="margin-top: 100px;">رواد العلم</h2>
+        <div class="grid" style="text-align: center;">
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg" class="pioneer-img">
                 <h3>آلان تورينج</h3>
-                <p>عبقري الرياضيات الذي فك شفرات الحرب ووضع فلسفة الذكاء.</p>
+                <p>الأب الروحي للحوسبة والذكاء الاصطناعي.</p>
             </div>
-            <div class="card" style="text-align: center;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/John_McCarthy_Stanford.jpg" alt="">
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/John_McCarthy_Stanford.jpg" class="pioneer-img">
                 <h3>جون مكارثي</h3>
-                <p>مخترع لغة LISP وصاحب تسمية "الذكاء الاصطناعي".</p>
+                <p>مؤسس العلم ومخترع لغة البرمجة Lisp.</p>
             </div>
-            <div class="card" style="text-align: center;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Marvin_Minsky_%28cropped%29.jpg" alt="">
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Marvin_Minsky_%28cropped%29.jpg" class="pioneer-img">
                 <h3>مارفن مينسكي</h3>
-                <p>رائد الشبكات العصبية الاصطناعية ومؤسس معمل AI في MIT.</p>
+                <p>أحد أبرز علماء الإدراك والذكاء الاصطناعي.</p>
             </div>
         </div>
-    </div>
 
-    <div class="section" id="pros">
-        <h2>الوجهان للتقنية</h2>
-        <div class="pros-cons">
-            <div class="box pros">
-                <h3 style="color: #00ff80;">الإيجابيات ✅</h3>
+        <h2 class="section-title" style="margin-top: 100px;">المميزات والمخاطر</h2>
+        <div class="split-section">
+            <div class="split-box pros">
+                <h3 style="color: #00d4ff; margin-bottom: 20px;">الإيجابيات</h3>
                 <ul>
-                    <li>زيادة الكفاءة والسرعة في العمليات.</li>
-                    <li>تقليل الأخطاء البشرية في الطب والجراحة.</li>
-                    <li>تحليل البيانات الضخمة التي يعجز عنها البشر.</li>
-                    <li>العمل في البيئات الخطرة (الفضاء، المناجم).</li>
+                    <li>تحليل البيانات الضخمة بدقة فائقة.</li>
+                    <li>المساعدة في التشخيص الطبي الدقيق.</li>
+                    <li>أتمتة المهام المتكررة وتوفير الوقت.</li>
+                    <li>تطوير حلول لمشاكل المناخ والطاقة.</li>
                 </ul>
             </div>
-            <div class="box cons">
-                <h3 style="color: #ff3030;">السلبيات ❌</h3>
+            <div class="split-box cons">
+                <h3 style="color: #ff453a; margin-bottom: 20px;">السلبيات</h3>
                 <ul>
-                    <li>مخاوف من فقدان الوظائف التقليدية.</li>
-                    <li>قضايا الخصوصية والأمن السيبراني.</li>
-                    <li>الانحياز الخوارزمي في اتخاذ القرارات.</li>
-                    <li>الاعتماد المفرط على الآلة وضعف مهارات البشر.</li>
+                    <li>تحديات الخصوصية وأمن المعلومات.</li>
+                    <li>التأثير على سوق العمل والوظائف التقليدية.</li>
+                    <li>المخاوف الأخلاقية من اتخاذ القرارات الآلية.</li>
+                    <li>الانحياز في البيانات والخوارزميات.</li>
                 </ul>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>صُمم بكل فخر بواسطة <b>سلطان عادل العتيبي</b></p>
-        <p style="font-size: 0.7rem; color: #666;">مشروع تقني تعليمي - 2024</p>
+        <div class="designer-info">تم الإعداد والتصميم بواسطة: سلطان عادل العتيبي</div>
+        <p>المشروع التقني الختامي | عام <span class="year">2025</span></p>
     </footer>
 
 </body>
